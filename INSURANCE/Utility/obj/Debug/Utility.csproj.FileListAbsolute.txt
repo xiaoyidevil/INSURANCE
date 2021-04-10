@@ -1,0 +1,5 @@
+D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\bin\Debug\XYYANG.Web.Utility.dll
+D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\bin\Debug\XYYANG.Web.Utility.pdb
+D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.dll
+D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.pdb
+D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
