@@ -15,21 +15,111 @@
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
           <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
         </ConnectionNode>
+        <ConnectionNode Name="DESKTOP-KRV0OE0:sa">
+          <Created>2021-04-12T20:52:09.9076141+08:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-KRV0OE0</Server>
+          <UserName>sa</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="DDL_tbl_Company.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:146.215.122.111:False:srwfdba</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>146.215.122.111</AssociatedConnSrvName>
-          <AssociatedConnUserName>srwfdba</AssociatedConnUserName>
-          <FullPath>DDL_tbl_Company.sql</FullPath>
+        <FileNode Name="DDL_aspnet_Applications.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Applications.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_Membership.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Membership.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_Paths.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Paths.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_PersonalizationAllUsers.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_PersonalizationAllUsers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_PersonalizationPerUser.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_PersonalizationPerUser.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_Profile.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Profile.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_Roles.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Roles.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_SchemaVersions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_SchemaVersions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_Users.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_Users.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_UsersInRoles.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_UsersInRoles.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_aspnet_WebEvent_Events.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DDL_aspnet_WebEvent_Events.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DDL_tbl_BoatOwner.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-KRV0OE0:False:sa</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-KRV0OE0</AssociatedConnSrvName>
+          <AssociatedConnUserName>sa</AssociatedConnUserName>
+          <FullPath>DDL_tbl_BoatOwner.sql</FullPath>
         </FileNode>
         <FileNode Name="DDL_tbl_InsurancePolicy.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:146.215.122.111:False:srwfdba</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>146.215.122.111</AssociatedConnSrvName>
-          <AssociatedConnUserName>srwfdba</AssociatedConnUserName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-KRV0OE0:False:sa</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-KRV0OE0</AssociatedConnSrvName>
+          <AssociatedConnUserName>sa</AssociatedConnUserName>
           <FullPath>DDL_tbl_InsurancePolicy.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SP_tbl_BoatOwner_Insert.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-KRV0OE0:False:sa</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-KRV0OE0</AssociatedConnSrvName>
+          <AssociatedConnUserName>sa</AssociatedConnUserName>
+          <FullPath>SP_tbl_BoatOwner_Insert.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SP_tbl_InstrancePolicy_Insert.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-KRV0OE0:False:sa</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-KRV0OE0</AssociatedConnSrvName>
+          <AssociatedConnUserName>sa</AssociatedConnUserName>
+          <FullPath>SP_tbl_InstrancePolicy_Insert.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

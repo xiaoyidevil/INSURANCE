@@ -11,23 +11,24 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[tbl_InsurancePolicy](
-	[ID]					INT IDENTITY(1,1) NOT NULL,
-	[CompanyName]			NVARCHAR(50) NOT NULL,
-	[BoatNum]				INT NULL,
-	[BoatOwnerName]			NVARCHAR(50) NULL,
-	[EffectiveDateStart]	DATETIME NULL,
-	[EffectiveDateEnd]		DATETIME NULL,
-	[PersonInsuranced]		NVARCHAR(10) NOT NULL,
-	[Identity]				NVARCHAR(18) NOT NULL,
-	[Industry]				NVARCHAR(10) NOT NULL,
-	[DateCreated]			DATETIME NULL,
-	[CreatedBy]				NVARCHAR(20) NULL,
-	[DateLastUpdated]		DATETIME NULL,
-	[LastUpdatedBy]			NVARCHAR(50) NULL,
+	[ID]						INT IDENTITY(1,1) NOT NULL,
+	[CompanyName]				NVARCHAR(50) NOT NULL,
+	[BoatNum]					NVARCHAR(50) NOT NULL,
+	[BoatOwnerName]				NVARCHAR(50) NOT NULL,
+	[EffectiveDateStart]		DATETIME NULL,
+	[EffectiveDateEnd]			DATETIME NULL,
+	[InsuranceInjureAmount]		MONEY NOT NULL,
+	[InsuranceMedicalAmount]	MONEY NOT NULL,
+	[Industry]					NVARCHAR(10) NOT NULL,
+	[DateCreated]				DATETIME NULL,
+	[CreatedBy]					NVARCHAR(20) NULL,
+	[DateLastUpdated]			DATETIME NULL,
+	[LastUpdatedBy]				NVARCHAR(50) NULL,
 CONSTRAINT [PK_tbl_InsuramcePolicy] PRIMARY KEY CLUSTERED
 (
-	ID ASC,
-	[CompanyName] ASC
+	[BoatNum]	ASC,	
+	[BoatOwnerName]	ASC,
+	[InsuranceInjureAmount] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -77,22 +78,39 @@ EXEC sys.sp_addextendedproperty @name = N'MS_Description',
                                 @level2type = N'COLUMN',
                                 @level2name = N'EffectiveDateEnd';
 GO
+--EXEC sys.sp_addextendedproperty @name = N'MS_Description',
+--                                @value = N'被保险人姓名',
+--                                @level0type = N'SCHEMA',
+--                                @level0name = N'dbo',
+--                                @level1type = N'TABLE',
+--                                @level1name = N'tbl_InsurancePolicy',
+--                                @level2type = N'COLUMN',
+--                                @level2name = N'PersonInsuranced';
+--GO
+--EXEC sys.sp_addextendedproperty @name = N'MS_Description',
+--                                @value = N'身份证号',
+--                                @level0type = N'SCHEMA',
+--                                @level0name = N'dbo',
+--                                @level1type = N'TABLE',
+--                                @level1name = N'tbl_InsurancePolicy',
+--                                @level2type = N'COLUMN',
+--                                @level2name = N'Identity';
+--GO
 EXEC sys.sp_addextendedproperty @name = N'MS_Description',
-                                @value = N'被保险人姓名',
+                                @value = N'意外伤害保额',
                                 @level0type = N'SCHEMA',
                                 @level0name = N'dbo',
                                 @level1type = N'TABLE',
                                 @level1name = N'tbl_InsurancePolicy',
                                 @level2type = N'COLUMN',
-                                @level2name = N'PersonInsuranced';
+                                @level2name = N'InsuranceInjureAmount';
 GO
 EXEC sys.sp_addextendedproperty @name = N'MS_Description',
-                                @value = N'身份证号',
+                                @value = N'意外医疗保额',
                                 @level0type = N'SCHEMA',
                                 @level0name = N'dbo',
                                 @level1type = N'TABLE',
                                 @level1name = N'tbl_InsurancePolicy',
                                 @level2type = N'COLUMN',
-                                @level2name = N'Identity';
+                                @level2name = N'InsuranceMedicalAmount';
 GO
-
