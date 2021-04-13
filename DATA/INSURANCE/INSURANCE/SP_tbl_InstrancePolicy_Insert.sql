@@ -44,6 +44,7 @@ BEGIN
 			CompanyName,
 			BoatNum,
 			BoatOwnerName,
+            EffectiveDateStartNum,
 			EffectiveDateStart,
 			EffectiveDateEnd,
 			--PersonInsuranced,
@@ -61,6 +62,7 @@ BEGIN
 		(   @varCompanyName,		-- CompanyName - nvarchar(50)
 			@varBoatNum,			-- BoatNum - nvarchar(20)
 			@varBoatOwnerName,      -- BoatOwnerName - nvarchar(50)
+			CONVERT(NVARCHAR(6),@varEffectiveDateStart,112),	--EffectiveDateStartNum -int
 			@varEffectiveDateStart, -- EffectiveDateStart - datetime
 			@varEffectiveDateEnd,	-- EffectiveDateEnd - datetime
 			--@varPersonInsuranced,	-- PersonInsuranced - nvarchar(10)
@@ -106,3 +108,10 @@ EXEC dbo.SP_tbl_InstrancePolicy_Insert
 		,@InsurancePolicyIdentity = N'123456789123456789'
 		,@CreatedBy = N'XYYANG'
 	END
+
+
+SELECT * FROM dbo.tbl_BoatOwner
+SELECT * FROM dbo.tbl_InsurancePolicy
+SELECT * FROM dbo.tbl_InsurancePersionList
+
+SELECT CONVERT(NVARCHAR(6),GETDATE(),112)

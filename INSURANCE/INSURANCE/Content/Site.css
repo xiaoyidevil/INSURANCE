@@ -244,6 +244,8 @@ hgroup.title {
     border-width:1px;
     text-align:center;
     width:1200px;
+    margin:0px auto;
+    background-color:red;
 }
 
 hgroup.title h1, hgroup.title h2 {

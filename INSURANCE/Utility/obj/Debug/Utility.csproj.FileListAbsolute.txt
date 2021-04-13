@@ -3,3 +3,8 @@ D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\bin\Debug\XYYANG.Web.Utility
 D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.dll
 D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.pdb
 D:\workspace\SourceCode\INSURANCE\INSURANCE\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
+E:\workspace\C#\INSURANCE\INSURANCE\INSURANCE\Utility\bin\Debug\XYYANG.Web.Utility.dll
+E:\workspace\C#\INSURANCE\INSURANCE\INSURANCE\Utility\bin\Debug\XYYANG.Web.Utility.pdb
+E:\workspace\C#\INSURANCE\INSURANCE\INSURANCE\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+E:\workspace\C#\INSURANCE\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.dll
+E:\workspace\C#\INSURANCE\INSURANCE\INSURANCE\Utility\obj\Debug\XYYANG.Web.Utility.pdb

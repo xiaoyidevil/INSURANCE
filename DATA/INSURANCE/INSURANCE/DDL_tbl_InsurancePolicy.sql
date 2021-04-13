@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[tbl_InsurancePolicy](
 	[CompanyName]				NVARCHAR(50) NOT NULL,
 	[BoatNum]					NVARCHAR(50) NOT NULL,
 	[BoatOwnerName]				NVARCHAR(50) NOT NULL,
+	[EffectiveDateStartNum]		INT NOT NULL,
 	[EffectiveDateStart]		DATETIME NULL,
 	[EffectiveDateEnd]			DATETIME NULL,
 	[InsuranceInjureAmount]		MONEY NOT NULL,
@@ -59,6 +60,15 @@ EXEC sys.sp_addextendedproperty @name = N'MS_Description',
                                 @level1name = N'tbl_InsurancePolicy',
                                 @level2type = N'COLUMN',
                                 @level2name = N'BoatOwnerName';
+GO
+EXEC sys.sp_addextendedproperty @name = N'MS_Description',
+                                @value = N'保单有效期开始日数字',
+                                @level0type = N'SCHEMA',
+                                @level0name = N'dbo',
+                                @level1type = N'TABLE',
+                                @level1name = N'tbl_InsurancePolicy',
+                                @level2type = N'COLUMN',
+                                @level2name = N'EffectiveDateStartNum';
 GO
 EXEC sys.sp_addextendedproperty @name = N'MS_Description',
                                 @value = N'保单有效期开始日',
