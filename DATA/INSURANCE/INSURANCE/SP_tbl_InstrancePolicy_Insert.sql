@@ -22,23 +22,20 @@ CREATE PROCEDURE SP_tbl_InstrancePolicy_Insert
 )
 AS	
 BEGIN
+	DECLARE @tmpID INT
 
-	IF
-	(
-		EXISTS
-		(
-			SELECT 
-				1 
-			FROM 
-				dbo.tbl_InsurancePolicy
-			WHERE 
-				BoatNum = @varBoatNum
-			AND BoatOwnerName = @varBoatOwnerName
-			AND InsuranceInjureAmount = @varInsuranceInjureAmount
-		)
-	)
+	SELECT 
+		@tmpID = ISNULL([ID],0)
+	FROM 
+		dbo.tbl_InsurancePolicy
+	WHERE 
+		BoatNum = @varBoatNum
+	AND BoatOwnerName = @varBoatOwnerName
+	AND InsuranceInjureAmount = @varInsuranceInjureAmount
+	
+	IF(@tmpID <> 0)
 	BEGIN
-		SET @varResult = 0
+		SET @varResult = @tmpID
 	END
 	ELSE
 	BEGIN
@@ -81,28 +78,31 @@ BEGIN
 	
 END
 
-
+GO
 --============================================================================================
 
 DECLARE @varResult INT;
 EXEC dbo.SP_tbl_InstrancePolicy_Insert 
-	@varCompanyName = N'´óÁ¬ÖÇê»ÈËÁ¦×ÊÔ´·şÎñÓĞÏŞ¹«Ë¾',                          -- nvarchar(50)
-	@varBoatNum = N'ÁÉÍßÓæ7524FAAF',                              -- nvarchar(50)
-	@varBoatOwnerName = N'ºúÓ³Ç¿',                        -- nvarchar(50)
+	@varCompanyName = N'å¤§è¿æ™ºæ˜ŠäººåŠ›èµ„æºæœåŠ¡æœ‰é™å…¬å¸',                          -- nvarchar(50)
+	@varBoatNum = N'è¾½ç“¦æ¸”7524FAAF',                              -- nvarchar(50)
+	@varBoatOwnerName = N'èƒ¡æ˜ å¼º',                        -- nvarchar(50)
 	@varEffectiveDateStart = '2021-04-12 14:07:37', -- datetime
 	@varEffectiveDateEnd = '2021-05-12 14:07:37',   -- datetime
-	--@varPersonInsuranced = N'³Â·½',                     -- nvarchar(10)
+	--@varPersonInsuranced = N'é™ˆæ–¹',                     -- nvarchar(10)
 	--@varIdentity = N'522728199403240615',                             -- nvarchar(18)
 	@varInsuranceInjureAmount = 700000,               -- money
 	@varInsuranceMedicalAmount = 70000,              -- money
-	@varIndustry = N'ÓæÒµ',                             -- nvarchar(10)
-	@varCreatedBy = N'ÑîÏşéó',                            -- nvarchar(20)
-	@varLastUpdatedBy = N'ÑîÏşéó',                        -- nvarchar(20)
+	@varIndustry = N'æ¸”ä¸š',                             -- nvarchar(10)
+	@varCreatedBy = N'æ¨æ™“è½¶',                            -- nvarchar(20)
+	@varLastUpdatedBy = N'æ¨æ™“è½¶',                        -- nvarchar(20)
 	@varResult = @varResult OUTPUT                  -- int
 
-	SELECT @varResult
-
-	
-
-
-	SELECT * FROM tbl_InsurancePolicy
+	SELECT @varResult AS BB
+	IF @varResult <> 0 
+	BEGIN
+		EXEC SP_tbl_InsurancePersionList_Insert
+		@InsurancePolicyID	= @varResult
+		,@InsurancePolicyName = N'XYYANG'
+		,@InsurancePolicyIdentity = N'123456789123456789'
+		,@CreatedBy = N'XYYANG'
+	END

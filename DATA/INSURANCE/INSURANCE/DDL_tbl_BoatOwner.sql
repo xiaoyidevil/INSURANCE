@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[tbl_BoatOwner](
 	[CreatedBy]			NVARCHAR(50) NULL,
 	[DateLastUpdated]	DATETIME NULL,
 	[LastUpdatedBy]		NVARCHAR(50) NULL
- CONSTRAINT [PK_tbl_Company] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_tbl_BoatOwner] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC,
 	[BoatNum] ASC,
