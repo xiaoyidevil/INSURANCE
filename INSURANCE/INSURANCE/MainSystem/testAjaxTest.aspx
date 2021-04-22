@@ -1,10 +1,18 @@
-﻿<%@ Page Title="保单录入" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InsuranceInput.aspx.cs" Inherits="INSURANCE.MainSystem.InsuranceInput" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">    
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="testAjaxTest.aspx.cs" Inherits="INSURANCE.MainSystem.testAjaxTest" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <div class="FuncTitle">
             <%--<asp:WebPartManager ID="WebPartManager1" runat="server"></asp:WebPartManager>--%>
-            <h1><%: XYYANG.Web.Utility.Constant.APP.ListOfInsured %></h1>
+          <%--  <h1><%: XYYANG.Web.Utility.Constant.APP.ListOfInsured %></h1>--%>
             <table class="tblInsurance">
                 <tr>
                     <td colspan="7">
@@ -26,7 +34,7 @@
                 </tr>
             </table>    
         </div>
-</asp:Content>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-</asp:Content>
+        <asp:Button ID="btnImportExcel" runat="server" Text="导入数据" OnClick="btnImportExcel_Click" />
+    </form>
+</body>
+</html>
