@@ -16,11 +16,18 @@ namespace INSURANCE.MainSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ListItem litem = new ListItem("01", "01");
-
-            ddlInsuranceCompany.Items.Add(litem);
-            litem = new ListItem("02", "02");
-            ddlInsuranceCompany.Items.Add(litem);
+            using (DBHelper dbHelper = new DBHelper(Common.GetDBConnection("")))
+            {
+                DataTable dtCompany =  dbHelper.RetrieveData("exec SP_InsuranceCompany_Select ''", null);
+                if (dtCompany != null)
+                {
+                    foreach (DataRow item in dtCompany.Rows)
+                    {
+                        ListItem litem = new ListItem(item["ID"].ToString(), item["CompanyName"].ToString());
+                        ddlInsuranceCompany.Items.Add(litem);
+                    }
+                }
+            }
         }
 
         [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
