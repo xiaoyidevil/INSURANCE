@@ -27,11 +27,35 @@ CREATE TABLE [dbo].[tbl_BoatOwner](
 ) ON [PRIMARY]
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'船主ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_BoatOwner', @level2type=N'COLUMN',@level2name=N'ID'
+EXEC sys.sp_addextendedproperty 
+			@name=N'MS_Description',
+			@value=N'船主ID' ,
+			@level0type=N'SCHEMA',
+			@level0name=N'dbo',
+			@level1type=N'TABLE',
+			@level1name=N'tbl_BoatOwner',
+			@level2type=N'COLUMN',
+			@level2name=N'ID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'船号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_BoatOwner', @level2type=N'COLUMN',@level2name=N'BoatNum'
+EXEC sys.sp_addextendedproperty 
+			@name=N'MS_Description',
+			@value=N'船号' ,
+			@level0type=N'SCHEMA',
+			@level0name=N'dbo',
+			@level1type=N'TABLE',
+			@level1name=N'tbl_BoatOwner',
+			@level2type=N'COLUMN',
+			@level2name=N'BoatNum'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'船主姓名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_BoatOwner', @level2type=N'COLUMN',@level2name=N'BoatOwnerName'
+EXEC sys.sp_addextendedproperty 
+			@name=N'MS_Description',
+			@value=N'船主姓名' ,
+			@level0type=N'SCHEMA',
+			@level0name=N'dbo',
+			@level1type=N'TABLE',
+			@level1name=N'tbl_BoatOwner',
+			@level2type=N'COLUMN',
+			@level2name=N'BoatOwnerName'
 GO
