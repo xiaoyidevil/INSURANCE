@@ -236,16 +236,32 @@ hgroup.title {
 
 .FuncTitle {
     text-align:center;
-    
+}
+.FileUpload {
+    text-align:center;
+}
+.tblInsurance {
+    border-color:red;
+    border-width:1px;
+    border-style:solid;
+    width:1500px;
+    margin:0px auto;
+    background-color:#5f90cf;
+    color:white;
 }
 
-.tblInsurance {
-    border-color:black;
+
+.tblInsurance td {
+    border-color:red;
     border-width:1px;
+    border-style:solid;
+    padding-left:0px;
+    width:200px;
     text-align:center;
-    width:1200px;
-    margin:0px auto;
-    background-color:red;
+}
+
+.DTcalender {
+    visibility:collapse;
 }
 
 hgroup.title h1, hgroup.title h2 {
