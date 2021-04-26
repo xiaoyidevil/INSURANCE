@@ -94,7 +94,47 @@ namespace XYYANG.Web.Utility.Excel
             return dtResult;
         }
 
-                public DataTable readExcelToDataTable()
+
+        public DataSet readWholeExcelToDataSet()
+        {
+            DataSet dsResult = new DataSet();
+
+            OleDbConnection excelConnection = new OleDbConnection(_ConnectionString);
+            OleDbCommand excelCommand = new OleDbCommand("SELECT * FROM [Sheet1$]", excelConnection);
+            OleDbDataAdapter excelAdapter = new OleDbDataAdapter(excelCommand);
+            try
+            {
+                excelConnection.Open();
+                excelAdapter.Fill(dsResult, "Sheet1$");
+
+            }
+            catch (Exception e)
+            {
+
+                //throw;
+            }
+            finally
+            {
+                if (excelCommand != null)
+                {
+                    excelCommand.Dispose();
+                }
+
+                if (excelConnection != null)
+                {
+                    if (excelConnection.State != ConnectionState.Closed)
+                    {
+                        excelConnection.Close();
+                    }
+                    excelConnection.Dispose();
+                }
+            }
+
+            return dsResult;
+        }
+
+
+        public DataTable readExcelToDataTable()
         {
             DataTable dtResult = new DataTable();
             try

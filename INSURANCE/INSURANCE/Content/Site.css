@@ -234,8 +234,20 @@ hgroup.title {
     margin-bottom: 10px;
 }
 
+#ddlInsuranceCompany {
+    float:left;
+    position:relative;
+}
+
 .FuncTitle {
     text-align:center;
+}
+
+.ControlPanel {
+    background-color:#5f90cf;
+    width:1500px;
+    text-align:center;
+    margin:0px auto;
 }
 .FileUpload {
     text-align:center;
@@ -250,6 +262,13 @@ hgroup.title {
     color:white;
 }
 
+.tblInsurance th {
+    
+    border-color:red;
+    border-width:1px;
+    border-style:solid;
+}
+
 
 .tblInsurance td {
     border-color:red;
@@ -257,7 +276,8 @@ hgroup.title {
     border-style:solid;
     padding-left:0px;
     width:200px;
-    text-align:center;
+    text-align:left;
+    /*float:left;*/
 }
 
 .DTcalender {

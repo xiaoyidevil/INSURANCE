@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -119,36 +120,96 @@ namespace XYYANG.Web.Utility.DB
 
             _sqlCommand.CommandText = sql;
 
-            foreach (SqlParameter item in sqlPara)
-            {
-                _sqlCommand.Parameters.Add(item);
-            }
-
-
-            if (_sqlConnection != null)
-            {
-                if (_sqlConnection.State != System.Data.ConnectionState.Open)
+            if (sqlPara != null) {
+                foreach (SqlParameter item in sqlPara)
                 {
-                    _sqlConnection.Open();
+                    _sqlCommand.Parameters.Add(item);
                 }
+            }
+            
+            try
+            {
+                if (_sqlConnection != null)
+                {
+                    if (_sqlConnection.State != System.Data.ConnectionState.Open)
+                    {
+                        _sqlConnection.Open();
+                    }
 
-                _sqlCommand.Connection = _sqlConnection;
+                    _sqlCommand.Connection = _sqlConnection;
 
-                _sqlTransaction = _sqlConnection.BeginTransaction();
-                _sqlCommand.Transaction = _sqlTransaction;
+                    _sqlTransaction = _sqlConnection.BeginTransaction();
+                    _sqlCommand.Transaction = _sqlTransaction;
 
-                _sqlCommand.ExecuteNonQuery();
+                    _sqlCommand.ExecuteNonQuery();
 
-                _sqlTransaction.Commit();
+                    _sqlTransaction.Commit();
+                }
+            }
+            catch (Exception)
+            {
                 _sqlConnection.Close();
                 _sqlConnection.Dispose();
                 _sqlCommand.Dispose();
                 _sqlTransaction.Dispose();
-
+                return blnResult;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+                _sqlConnection.Dispose();
+                _sqlCommand.Dispose();
+                _sqlTransaction.Dispose();
             }
 
             return blnResult;
         }
-    
+
+        public DataTable RetrieveData(string sql, List<SqlParameter> sqlPara, bool blnSP = false)
+        {
+            DataTable dtResult = new DataTable();
+            
+            
+            try
+            {
+                if (_sqlConnection != null)
+                {
+                    if (_sqlConnection.State != System.Data.ConnectionState.Open)
+                    {
+                        _sqlConnection.Open();
+                    }
+
+                    SqlDataAdapter sqlAdapter = new SqlDataAdapter(sql,_sqlConnection);
+
+                    if (sqlPara != null)
+                    {
+                        foreach (SqlParameter item in sqlPara)
+                        {
+                            sqlAdapter.SelectCommand.Parameters.Add(item);
+                        }
+                    }
+                    if (blnSP) {
+                        sqlAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    }
+                    sqlAdapter.Fill(dtResult);
+
+                    sqlAdapter.Dispose();
+                }
+            }
+            catch (Exception e)
+            {
+                _sqlConnection.Close();
+                _sqlConnection.Dispose();
+                return dtResult;
+            }
+            finally{
+                _sqlConnection.Close();
+                _sqlConnection.Dispose();
+            }
+           
+            return dtResult;
+        }
+
+
     }
 }
