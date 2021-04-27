@@ -13,8 +13,8 @@ GO
 CREATE TABLE [dbo].[tbl_InsurancePolicy](
 	[ID]						INT IDENTITY(1,1) NOT NULL,
 	[CompanyName]				NVARCHAR(50) NOT NULL,
-	[BoatNum]					NVARCHAR(50) NOT NULL,
-	[BoatOwnerName]				NVARCHAR(50) NOT NULL,
+	[BoatNum]					NVARCHAR(20) NOT NULL,
+	[BoatOwnerName]				NVARCHAR(40) NOT NULL,
 	[EffectiveDateStartNum]		INT NOT NULL,
 	[EffectiveDateStart]		DATETIME NULL,
 	[EffectiveDateEnd]			DATETIME NULL,

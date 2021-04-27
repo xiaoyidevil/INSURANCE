@@ -13,8 +13,7 @@ CREATE PROCEDURE SP_tbl_InstrancePolicy_Insert
 	@varEffectiveDateEnd			DATETIME,
 	--@varPersonInsuranced			NVARCHAR(10),
 	--@varIdentity					NVARCHAR(18),
-	@varInsuranceInjureAmount		MONEY,
-	@varInsuranceMedicalAmount		MONEY,
+	@varInsuranceTypeID				INT,
 	@varIndustry					NVARCHAR(10),
 	@varCreatedBy					NVARCHAR(20),
 	@varLastUpdatedBy				NVARCHAR(20),
@@ -23,6 +22,17 @@ CREATE PROCEDURE SP_tbl_InstrancePolicy_Insert
 AS	
 BEGIN
 	DECLARE @tmpID INT
+
+	DECLARE @varInsuranceInjureAmount  AS MONEY
+	DECLARE @varInsuranceMedicalAmount AS MONEY
+
+	SELECT 
+		@varInsuranceInjureAmount =  AccidentInjury,
+		@varInsuranceMedicalAmount = AccidentMedical
+	FROM 
+		tbl_InsuranceType 
+	WHERE
+		ID = @varInsuranceTypeID
 
 	SELECT 
 		@tmpID = ISNULL([ID],0)
@@ -92,14 +102,17 @@ EXEC dbo.SP_tbl_InstrancePolicy_Insert
 	@varEffectiveDateEnd = '2021-05-12 14:07:37',   -- datetime
 	--@varPersonInsuranced = N'陈方',                     -- nvarchar(10)
 	--@varIdentity = N'522728199403240615',                             -- nvarchar(18)
-	@varInsuranceInjureAmount = 700000,               -- money
-	@varInsuranceMedicalAmount = 70000,              -- money
+	@varInsuranceTypeID = 1
 	@varIndustry = N'渔业',                             -- nvarchar(10)
-	@varCreatedBy = N'杨晓轶',                            -- nvarchar(20)
-	@varLastUpdatedBy = N'杨晓轶',                        -- nvarchar(20)
+	@varCreatedBy = N'SYSTEM',                            -- nvarchar(20)
+	@varLastUpdatedBy = N'SYSTEM',                        -- nvarchar(20)
 	@varResult = @varResult OUTPUT                  -- int
 
 	SELECT @varResult AS BB
+
+
+	SELECT * FROM tbl_InstrancePolicy
+
 	IF @varResult <> 0 
 	BEGIN
 		EXEC SP_tbl_InsurancePersionList_Insert
@@ -110,8 +123,3 @@ EXEC dbo.SP_tbl_InstrancePolicy_Insert
 	END
 
 
-SELECT * FROM dbo.tbl_BoatOwner
-SELECT * FROM dbo.tbl_InsurancePolicy
-SELECT * FROM dbo.tbl_InsurancePersionList
-
-SELECT CONVERT(NVARCHAR(6),GETDATE(),112)
