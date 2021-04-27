@@ -165,6 +165,66 @@ namespace XYYANG.Web.Utility.DB
             return blnResult;
         }
 
+
+        public bool ExecuteScalar(string sql, List<SqlParameter> sqlPara)
+        {
+            bool blnResult = false;
+
+            if (_sqlCommand == null)
+            {
+                _sqlCommand = new SqlCommand();
+            }
+            _sqlCommand.Parameters.Clear();
+
+            _sqlCommand.CommandText = sql;
+
+            if (sqlPara != null)
+            {
+                foreach (SqlParameter item in sqlPara)
+                {
+                    _sqlCommand.Parameters.Add(item);
+                }
+            }
+
+            try
+            {
+                if (_sqlConnection != null)
+                {
+                    if (_sqlConnection.State != System.Data.ConnectionState.Open)
+                    {
+                        _sqlConnection.Open();
+                    }
+
+                    _sqlCommand.Connection = _sqlConnection;
+
+                    _sqlTransaction = _sqlConnection.BeginTransaction();
+                    _sqlCommand.Transaction = _sqlTransaction;
+
+                    _sqlCommand.ExecuteScalar();
+
+                    _sqlTransaction.Commit();
+                }
+            }
+            catch (Exception)
+            {
+                _sqlConnection.Close();
+                _sqlConnection.Dispose();
+                _sqlCommand.Dispose();
+                _sqlTransaction.Dispose();
+                return blnResult;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+                _sqlConnection.Dispose();
+                _sqlCommand.Dispose();
+                _sqlTransaction.Dispose();
+            }
+
+            return blnResult;
+        }
+
+
         public DataTable RetrieveData(string sql, List<SqlParameter> sqlPara, bool blnSP = false)
         {
             DataTable dtResult = new DataTable();
