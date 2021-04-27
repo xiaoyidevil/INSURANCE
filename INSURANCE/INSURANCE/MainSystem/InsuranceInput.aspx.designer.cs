@@ -31,6 +31,15 @@ namespace INSURANCE.MainSystem {
         protected global::System.Web.UI.WebControls.DropDownList ddlInsuranceCompany;
         
         /// <summary>
+        /// ddlInsuranceType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsuranceType;
+        
+        /// <summary>
         /// txtBoatOwner control.
         /// </summary>
         /// <remarks>
@@ -146,5 +155,14 @@ namespace INSURANCE.MainSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table tblPersonList;
+        
+        /// <summary>
+        /// btnImport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnImport;
     }
 }

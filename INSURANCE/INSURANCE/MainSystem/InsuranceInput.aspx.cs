@@ -50,6 +50,7 @@ namespace INSURANCE.MainSystem
             {
                 lblStartDate.Text = DateTime.Now.ToShortDateString();
                 lblEndDate.Text = DateTime.Now.ToShortDateString();
+                getInsuranceType();
             }
         }
 
@@ -115,6 +116,34 @@ namespace INSURANCE.MainSystem
                     {
                         ListItem litem = new ListItem(item["CompanyName"].ToString(), item["ID"].ToString());
                         ddlInsuranceCompany.Items.Add(litem);
+                    }
+                }
+            }
+        }
+
+        private void getInsuranceType()
+        {
+            ddlInsuranceType.Items.Clear();
+            ListItem lstItem = new ListItem("请选择", "0");
+            ddlInsuranceType.Items.Add(lstItem);
+            using (DBHelper dbHelper = new DBHelper(Common.GetDBConnection("")))
+            {
+                SqlParameter sqlInsuranceType = new SqlParameter();
+                sqlInsuranceType.ParameterName = "@varInsuranceType";
+                sqlInsuranceType.SqlDbType = SqlDbType.NVarChar;
+                sqlInsuranceType.Size = 40;
+                sqlInsuranceType.Value = "";
+
+                List<SqlParameter> sqlPara = new List<SqlParameter>();
+                sqlPara.Add(sqlInsuranceType);
+
+                DataTable dtInsuranceType = dbHelper.RetrieveData("dbo.SP_tbl_InsuranceType_Select", sqlPara, true);
+                if (dtInsuranceType != null)
+                {
+                    foreach (DataRow item in dtInsuranceType.Rows)
+                    {
+                        ListItem litem = new ListItem(item["InsuranceType"].ToString(), item["ID"].ToString());
+                        ddlInsuranceType.Items.Add(litem);
                     }
                 }
             }
@@ -237,8 +266,92 @@ namespace INSURANCE.MainSystem
             dtInsurancePersionList = ConvertUploadFileToDataTable(dt);
 
             //gvPersonList.DataSource = dsInsurancePersionList.Tables["Sheet1$"];
-            gvPersonList.DataSource = dtInsurancePersionList;
-            gvPersonList.DataBind();
+            //gvPersonList.DataSource = dtInsurancePersionList;
+            //gvPersonList.DataBind();
+
+            ShowPersonList(dtInsurancePersionList, ddlInsuranceType.SelectedValue);
+
+        }
+
+        private void ShowPersonList(DataTable dt,string InsuranceType)
+        {
+            DataTable dtInsuranceType = new DataTable();
+            
+            int intInsuranceType = 0;
+            int.TryParse(InsuranceType,out intInsuranceType);
+
+            using (DBHelper dbHelper = new DBHelper(Common.GetDBConnection("")))
+            {
+
+                SqlParameter sqlInsuranceTypeID = new SqlParameter();
+                sqlInsuranceTypeID.ParameterName = "@varID";
+                sqlInsuranceTypeID.SqlDbType = SqlDbType.Int;
+                sqlInsuranceTypeID.Value = intInsuranceType;
+
+                SqlParameter sqlInsuranceType = new SqlParameter();
+                sqlInsuranceType.ParameterName = "@varInsuranceType";
+                sqlInsuranceType.SqlDbType = SqlDbType.NVarChar;
+                sqlInsuranceType.Size = 80;
+                sqlInsuranceType.Value = "";
+
+                List<SqlParameter> paraList = new List<SqlParameter>();
+                paraList.Add(sqlInsuranceTypeID);
+                paraList.Add(sqlInsuranceType);
+
+                dtInsuranceType = dbHelper.RetrieveData("dbo.SP_tbl_InsuranceType_Select", paraList, true);
+            }
+            
+
+            int seq = 1;
+            foreach (DataRow item in dt.Rows)
+            {
+                #region 序号
+                TableRow tr = new TableRow();
+                TableCell tc = new TableCell();
+                tc.Text = seq.ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 被保险人姓名
+                tc = new TableCell();
+                tc.Text = item["InsurancePolicyName"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 被保险人身份证号
+                tc = new TableCell();
+                tc.Text = item["InsurancePolicyIdentity"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 年龄
+                tc = new TableCell();
+                tc.Text = item["Age"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 行业
+                tc = new TableCell();
+                tc.Text = item["Occupation"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 意外伤害
+                tc = new TableCell();
+                tc.Text = dtInsuranceType.Rows[0]["AccidentInjury"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                #region 意外医疗
+                tc = new TableCell();
+                tc.Text = dtInsuranceType.Rows[0]["AccidentMedical"].ToString();
+                tr.Cells.Add(tc);
+                #endregion
+
+                seq += 1;
+
+                tblPersonList.Rows.Add(tr);
+            }
         }
 
         private DataTable ConvertUploadFileToDataTable(DataTable dt) {
@@ -263,6 +376,84 @@ namespace INSURANCE.MainSystem
             }
 
             return dtResult;
+        }
+
+        private void InsertInstrancePolicy()
+        { 
+            using(DBHelper dbHelper = new DBHelper(Common.GetDBConnection("")))
+            {
+                List<SqlParameter> paraList = new List<SqlParameter>();
+                SqlParameter sqlCompanyName = new SqlParameter();
+                sqlCompanyName.ParameterName = "@varCompanyName";
+                sqlCompanyName.SqlDbType = SqlDbType.NVarChar;
+                sqlCompanyName.Size = 20;
+                sqlCompanyName.Value = txtInsuranceCompany.Text;
+
+                SqlParameter sqlBoatNum = new SqlParameter();
+                sqlBoatNum.ParameterName = "@varBoatNum";
+                sqlBoatNum.SqlDbType = SqlDbType.NVarChar;
+                sqlBoatNum.Size = 20;
+                sqlBoatNum.Value = txtBoatNum.Text;
+
+                SqlParameter sqlBoatOwnerName = new SqlParameter();
+                sqlBoatOwnerName.ParameterName = "@varBoatOwnerName";
+                sqlBoatOwnerName.SqlDbType = SqlDbType.NVarChar;
+                sqlBoatOwnerName.Size = 40;
+                sqlBoatOwnerName.Value = txtBoatOwner.Text;
+
+                SqlParameter sqlEffectiveDateStart = new SqlParameter();
+                sqlEffectiveDateStart.ParameterName = "@varEffectiveDateStart";
+                sqlEffectiveDateStart.SqlDbType = SqlDbType.DateTime;
+                sqlEffectiveDateStart.Value = lblStartDate.Text;
+
+                SqlParameter sqlEffectiveDateEnd = new SqlParameter();
+                sqlEffectiveDateEnd.ParameterName = "@varEffectiveDateEnd";
+                sqlEffectiveDateEnd.SqlDbType = SqlDbType.DateTime;
+                sqlEffectiveDateEnd.Value = lblEndDate.Text;
+
+                SqlParameter sqlInsuranceTypeID = new SqlParameter();
+                sqlInsuranceTypeID.ParameterName = "@varInsuranceTypeID";
+                sqlInsuranceTypeID.SqlDbType = SqlDbType.Int;
+                sqlInsuranceTypeID.Value = ddlInsuranceType.SelectedValue;
+
+
+                SqlParameter sqlIndustry = new SqlParameter();
+                sqlIndustry.ParameterName = "@varIndustry";
+                sqlIndustry.SqlDbType = SqlDbType.NVarChar;
+                sqlIndustry.Size = 20;
+
+                SqlParameter sqlCreatedBy = new SqlParameter();
+                sqlCreatedBy.ParameterName = "@varCreatedBy";
+                sqlCreatedBy.SqlDbType = SqlDbType.NVarChar;
+                sqlCreatedBy.Size = 40;
+
+                SqlParameter sqlLastUpdatedBy = new SqlParameter();
+                sqlLastUpdatedBy.ParameterName = "@varLastUpdatedBy";
+                sqlLastUpdatedBy.SqlDbType = SqlDbType.NVarChar;
+                sqlLastUpdatedBy.Size = 40;
+
+                SqlParameter sqlResult_Out = new SqlParameter();
+                sqlResult_Out.ParameterName = "@varResult";
+                sqlResult_Out.SqlDbType = SqlDbType.Int;
+                sqlResult_Out.Direction = ParameterDirection.Output;
+
+                paraList.Add(sqlCompanyName);
+                paraList.Add(sqlBoatNum);
+                paraList.Add(sqlBoatOwnerName);
+                paraList.Add(sqlEffectiveDateStart);
+                paraList.Add(sqlEffectiveDateEnd);
+                paraList.Add(sqlInsuranceTypeID);
+                paraList.Add(sqlIndustry);
+                paraList.Add(sqlCreatedBy);
+                paraList.Add(sqlLastUpdatedBy);
+
+                dbHelper.ExecuteNonQuery("SP_tbl_InstrancePolicy_Insert", paraList);
+            }
+        }
+
+        protected void btnImport_Click(object sender, EventArgs e)
+        {
+            InsertInstrancePolicy();
         }
     }
 }

@@ -10,8 +10,11 @@
                 <tr>
                     <td><%: XYYANG.Web.Utility.Constant.InsurancePage.InsuranceCompay %>：</td>
                     <td><asp:TextBox ID="txtInsuranceCompany" runat="server" AutoPostBack="true" Width="180" OnTextChanged="txtInsuranceCompany_TextChanged"></asp:TextBox></td>
-                    <td colspan="3"><asp:DropDownList ID="ddlInsuranceCompany" runat="server" AutoPostBack="true" Width="180"
+                    <td ><asp:DropDownList ID="ddlInsuranceCompany" runat="server" AutoPostBack="true" Width="180"
                         OnSelectedIndexChanged="ddlInsuranceCompany_SelectedIndexChanged" ></asp:DropDownList></td>
+                    <td><%: XYYANG.Web.Utility.Constant.InsurancePage.InsuranceType %></td>
+                    <td colspan="3">
+                        <asp:DropDownList ID="ddlInsuranceType" runat="server" Width="180"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td><%: XYYANG.Web.Utility.Constant.InsurancePage.BoatOwner %></td>
@@ -55,7 +58,7 @@
                     <asp:TableHeaderCell RowSpan="3"><%: XYYANG.Web.Utility.Constant.InsurancePage.IdentityNo %></asp:TableHeaderCell>
                     <asp:TableHeaderCell RowSpan="3"><%: XYYANG.Web.Utility.Constant.InsurancePage.Age %></asp:TableHeaderCell>
                     <asp:TableHeaderCell RowSpan="3"><%: XYYANG.Web.Utility.Constant.InsurancePage.Occupation %></asp:TableHeaderCell>
-                    <asp:TableHeaderCell><%: XYYANG.Web.Utility.Constant.InsurancePage.InsuranceTotalAmount %></asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="2"><%: XYYANG.Web.Utility.Constant.InsurancePage.InsuranceTotalAmount %></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell><%: XYYANG.Web.Utility.Constant.InsurancePage.GroupAccidentInjury %></asp:TableHeaderCell>
@@ -66,6 +69,10 @@
                     <asp:TableHeaderCell><%: XYYANG.Web.Utility.Constant.InsurancePage.AccidentMedicalCare %></asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
+        </div>
+        <br />
+        <div class="ControlPanel">
+            <asp:Button ID="btnImport" runat="server" Text="导入" OnClientClick="return checkImport();" OnClick="btnImport_Click" />
         </div>
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
